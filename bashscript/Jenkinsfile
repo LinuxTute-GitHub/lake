@@ -13,7 +13,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'sh ./myfirstscript.sh'
+                    sh 'sh ./bashscript/myfirstscript.sh'
                 }
             }
         }
