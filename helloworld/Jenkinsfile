@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/LinuxTute-GitHub/myfirstrepo.git', branch: 'devops'
+                git url: 'https://github.com/LinuxTute-GitHub/lake.git', branch: 'devops'
             }
         }
 
@@ -27,7 +27,7 @@ pipeline {
                     sh '''
                     docker stop $CONTAINER_NAME || true
                     docker rm $CONTAINER_NAME || true
-                    docker run -d --name myapp $DOCKER_IMAGE
+                    docker run -d  $DOCKER_IMAGE
                     '''
                 }
             }
