@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "cd nodejs && docker build -t $DOCKER_IMAGE ."
+                    sh "cd node && docker build -t $DOCKER_IMAGE ."
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -itd -p 7000:7000  $DOCKER_IMAGE
+                    docker run -itd -p 3000:3000  $DOCKER_IMAGE
                     '''
                 }
             }
