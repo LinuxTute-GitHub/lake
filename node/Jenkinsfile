@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "dockernodejs:latest"
+        CONTAINER_NAME = "dockernodejs"
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/LinuxTute-GitHub/lake.git', branch: 'nodejs'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "cd nodejs && docker build -t $DOCKER_IMAGE ."
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    sh '''
+                    docker run -itd -p 7000:7000  $DOCKER_IMAGE
+                    '''
+                }
+            }
+        }
+    }
+}
+
